@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Kall fra klient til tjener</title>
+</head>
+<body>
+    <h3>Kall fra klient til tjener</h3>
+    Skriv inn navnet: <input type="text" id="navn"><br/>
+    Skriv inn adressen: <input type="text" id="adresse"><br/>
+    <button onclick="hentData()">Trykk her</button><br/>
+    Navn:<span id="utNavn"></span><br/>
+    Adresse:<span id="utAdresse"></span><br/>
+
+<script type="application/javascript">
+    function hentData() {
+        const kunde ={
+            navn: $("#navn").val(),
+            adresse: $("#adresse").val()
+        };
+        $.get("/", kunde, function (data) {
+            $("#utNavn").html(data.navn);
+            $("#utAdresse").html(data.adresse);
+        });
+    }
+</script>
+
+</body>
+</html>
